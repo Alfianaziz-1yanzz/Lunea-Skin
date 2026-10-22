@@ -1,0 +1,1666 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lunea Skin - Perawatan Alami Untuk Kulit Sehat, Lembut & Bercahaya</title>
+    
+    <!-- Google Fonts: Playfair Display & Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,400;1,600;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        lunea: {
+                            50: '#FDF8F8',
+                            100: '#FBECEE',
+                            200: '#F6D9DC',
+                            300: '#EAB8C1',
+                            400: '#D58D9A',
+                            500: '#B5606E',
+                            600: '#9C4553',
+                            700: '#8C3947',
+                            800: '#702834',
+                            900: '#381B20',
+                        },
+                        cream: {
+                            50: '#FCFAF8',
+                            100: '#F7F3EE',
+                            200: '#EFE8DE',
+                            300: '#E3D7C5',
+                        },
+                        sage: {
+                            50: '#F3F7F5',
+                            100: '#E3ECE7',
+                            500: '#5F8572',
+                            600: '#4B6E5B',
+                            700: '#3A5747',
+                        },
+                        gold: {
+                            400: '#D9AA69',
+                            500: '#C89551',
+                            600: '#A9783A',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+                        serif: ['"Playfair Display"', 'Georgia', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom Luxury Depth & Eye-Comfort Styling -->
+    <style>
+        :root {
+            --bg-canvas: #FAF6F4;
+            --surface-card: #FFFFFF;
+            --surface-glass: rgba(255, 255, 255, 0.84);
+            --surface-glass-heavy: rgba(255, 255, 255, 0.96);
+            
+            --rose-primary: #8C3947;
+            --rose-deep: #702834;
+            --rose-soft: #B5606E;
+            --rose-tint: #FBECEE;
+            --rose-border: rgba(229, 184, 191, 0.55);
+            --rose-border-hover: rgba(181, 96, 110, 0.7);
+            
+            --text-heading: #381B20;
+            --text-body: #573E43;
+            --text-muted: #8E7378;
+            
+            --shadow-card: 0 14px 34px -8px rgba(140, 57, 71, 0.08), 0 2px 8px -2px rgba(140, 57, 71, 0.04);
+            --shadow-hover: 0 22px 46px -10px rgba(140, 57, 71, 0.16), 0 6px 16px -4px rgba(140, 57, 71, 0.06);
+
+            /* FIX: consistent vertical section rhythm */
+            --section-gap: 5rem;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-canvas);
+            color: var(--text-body);
+            overflow-x: hidden;
+            letter-spacing: -0.01em;
+        }
+
+        /* FIX Bug #1: Ambient orbs must be position:fixed so they sit behind
+           all content without contributing to page height or causing layout shifts.
+           Using z-index:-1 keeps them behind everything. */
+        .ambient-orb {
+            position: fixed;
+            border-radius: 9999px;
+            pointer-events: none;
+            filter: blur(90px);
+            opacity: 0.45;
+            z-index: -1;
+            will-change: transform;
+        }
+
+        .orb-rose {
+            background: radial-gradient(circle, rgba(247, 206, 216, 0.9) 0%, rgba(250, 235, 238, 0.25) 65%, transparent 100%);
+        }
+
+        .orb-cream {
+            background: radial-gradient(circle, rgba(247, 239, 226, 0.9) 0%, rgba(250, 246, 240, 0.2) 65%, transparent 100%);
+        }
+
+        .orb-sage {
+            background: radial-gradient(circle, rgba(223, 237, 230, 0.8) 0%, rgba(240, 247, 244, 0.1) 65%, transparent 100%);
+        }
+
+        /* Tactile Glass Card — inset highlight gives non-flat bevel depth */
+        .glass-card {
+            background: var(--surface-glass);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--rose-border);
+            box-shadow: 
+                0 12px 36px -8px rgba(140, 57, 71, 0.07),
+                0 2px 6px -1px rgba(140, 57, 71, 0.03),
+                inset 0 1px 1px 0 rgba(255, 255, 255, 0.95);
+            transition: box-shadow 0.38s cubic-bezier(0.16, 1, 0.3, 1),
+                        border-color 0.38s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 0.38s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .glass-card:hover {
+            border-color: var(--rose-border-hover);
+            box-shadow: 
+                0 22px 48px -10px rgba(140, 57, 71, 0.15),
+                0 6px 18px -4px rgba(140, 57, 71, 0.06),
+                inset 0 1px 2px 0 rgba(255, 255, 255, 1);
+            transform: translateY(-5px);
+        }
+
+        /* Product Pod — radial glow + soft shadow gives 3D pedestal illusion */
+        .product-pod {
+            position: relative;
+            background: radial-gradient(circle at 50% 60%, #FFFFFF 0%, #FAF0F2 60%, #F2DCE0 100%);
+            border: 1px solid rgba(235, 196, 203, 0.6);
+            box-shadow:
+                inset 0 2px 12px rgba(255, 255, 255, 0.95),
+                inset 0 -4px 12px rgba(235, 196, 203, 0.3),
+                0 8px 28px -6px rgba(140, 57, 71, 0.08);
+        }
+
+        /* Ground shadow under product image — adds floating feel */
+        .product-pod::after {
+            content: '';
+            position: absolute;
+            bottom: 6%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60%;
+            height: 12%;
+            background: radial-gradient(ellipse at center, rgba(140, 57, 71, 0.2) 0%, rgba(140, 57, 71, 0.04) 55%, transparent 75%);
+            filter: blur(8px);
+            pointer-events: none;
+            transition: width 0.4s ease, opacity 0.4s ease;
+            z-index: 0;
+        }
+
+        .glass-card:hover .product-pod::after {
+            width: 72%;
+            background: radial-gradient(ellipse at center, rgba(140, 57, 71, 0.26) 0%, rgba(140, 57, 71, 0.06) 60%, transparent 80%);
+        }
+
+        /* Luxury Gradient Button — silk sheen sweep on hover */
+        .btn-luxury {
+            background: linear-gradient(135deg, #A84C5A 0%, #8C3947 50%, #702834 100%);
+            color: #FFFFFF;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 6px 20px -3px rgba(140, 57, 71, 0.32), inset 0 1px 1px 0 rgba(255, 255, 255, 0.35);
+            transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+        }
+
+        .btn-luxury:hover {
+            background: linear-gradient(135deg, #B55A68 0%, #9C4553 50%, #7E313D 100%);
+            box-shadow: 0 10px 28px -3px rgba(140, 57, 71, 0.45), inset 0 1px 1px 0 rgba(255, 255, 255, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .btn-luxury:active {
+            transform: translateY(0);
+            box-shadow: 0 4px 14px -2px rgba(140, 57, 71, 0.35);
+        }
+
+        /* Sheen sweep — pure CSS, no JS */
+        .btn-luxury::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.22), transparent);
+            transform: skewX(-20deg);
+            transition: left 0.65s ease;
+        }
+
+        .btn-luxury:hover::after {
+            left: 160%;
+        }
+
+        /* Outline Button */
+        .btn-outline-luxury {
+            background: rgba(255, 255, 255, 0.92);
+            color: var(--text-heading);
+            border: 1px solid var(--rose-border);
+            box-shadow: 0 3px 12px -2px rgba(140, 57, 71, 0.05), inset 0 1px 1px rgba(255, 255, 255, 1);
+            transition: all 0.28s ease;
+        }
+
+        .btn-outline-luxury:hover {
+            background: #FFFFFF;
+            border-color: var(--rose-soft);
+            color: var(--rose-primary);
+            box-shadow: 0 6px 20px -3px rgba(140, 57, 71, 0.12);
+            transform: translateY(-2px);
+        }
+
+        /* Botanical Pill Badge */
+        .pill-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            padding: 0.35rem 0.95rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(229, 184, 191, 0.8);
+            color: var(--rose-primary);
+            box-shadow: 0 3px 10px -2px rgba(140, 57, 71, 0.07), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+        }
+
+        /* FIX Bug #7: step badges in ritual cards need inline-flex, not block span */
+        .step-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 2rem;
+            height: 2rem;
+            border-radius: 9999px;
+            font-family: 'Playfair Display', Georgia, serif;
+            font-weight: 700;
+            font-size: 0.875rem;
+            margin-bottom: 1rem;
+        }
+
+        .ritual-steps {
+            transition: opacity 0.2s ease;
+        }
+        .ritual-steps.ritual-fade {
+            opacity: 0;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #F7EAEB; }
+        ::-webkit-scrollbar-thumb { background: #D8A4AC; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #B5606E; }
+
+        /* Accordion */
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.38s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+            opacity: 0;
+        }
+        .faq-answer.open {
+            max-height: 400px;
+            opacity: 1;
+        }
+
+        /* FIX Bug #9: modals hidden by default, revealed with display class swap in JS */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 50;
+            background: rgba(0,0,0,0.38);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+        }
+        .modal-overlay.open {
+            display: flex;
+        }
+
+        /* Page fade-in */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        .page-view {
+            animation: fadeIn 0.28s ease both;
+        }
+
+        /* FIX: prefers-reduced-motion — disable all animations */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col selection:bg-rose-200 selection:text-lunea-900">
+
+    <!-- FIX Bug #1: Ambient orbs are position:fixed, z-index:-1. They don't scroll
+         and don't add to page height. Background atmosphere only. -->
+    <div class="ambient-orb orb-rose w-[520px] h-[520px] top-[-60px] left-[-140px]"></div>
+    <div class="ambient-orb orb-cream w-[560px] h-[560px] top-[30vh] right-[-130px]"></div>
+    <div class="ambient-orb orb-sage w-[480px] h-[480px] top-[60vh] left-[-80px]"></div>
+    <div class="ambient-orb orb-rose w-[500px] h-[500px] bottom-[10vh] right-[-120px]"></div>
+
+    <!-- Top Announcement Bar -->
+    <div class="relative z-40 bg-gradient-to-r from-lunea-800 via-lunea-700 to-lunea-800 text-rose-100 text-[11px] sm:text-xs py-2.5 px-4 text-center font-medium tracking-wide flex items-center justify-center space-x-2 border-b border-lunea-700/50 shadow-sm">
+        <i class="fa-solid fa-sparkles text-[10px] text-gold-400"></i>
+        <span><strong>Spesial Bulan Ini:</strong> Gratis Ongkir Seluruh Indonesia min. Rp 200.000 • Teruji BPOM & 100% Halal Certified</span>
+        <i class="fa-solid fa-leaf text-[10px] text-sage-500"></i>
+    </div>
+
+    <!-- Floating Frosted Glass Header Navigation -->
+    <header class="sticky top-0 z-50 bg-white/85 backdrop-blur-xl border-b border-rose-100/80 shadow-[0_4px_25px_-5px_rgba(140,57,71,0.06)] transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            
+            <!-- Brand Identity: logo already has full wordmark, show it naturally -->
+            <div class="flex items-center cursor-pointer group" onclick="switchPage('home')">
+                <div class="relative flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
+                    <img src="assets/img/LUNEA SKIN.png" alt="Logo Lunea Skin"
+                         class="h-14 w-auto object-contain drop-shadow-[0_2px_8px_rgba(140,57,71,0.15)]"
+                         onerror="this.onerror=null; this.src='Gambar/LUNEA SKIN.png';">
+                </div>
+            </div>
+            
+            <!-- Desktop Navigation Links -->
+            <nav class="hidden md:flex items-center space-x-1 font-medium text-sm text-lunea-800 bg-rose-50/70 p-1.5 rounded-full border border-rose-100/90 shadow-inner">
+                <button onclick="switchPage('home')" id="nav-btn-home" class="nav-item px-5 py-2 rounded-full text-xs font-semibold tracking-wide transition-all duration-200 bg-white text-lunea-700 shadow-xs border border-rose-200/60">Home</button>
+                <button onclick="switchPage('about')" id="nav-btn-about" class="nav-item px-5 py-2 rounded-full text-xs font-medium tracking-wide transition-all duration-200 hover:text-lunea-700 hover:bg-white/70">Tentang Kami</button>
+                <button onclick="switchPage('products')" id="nav-btn-products" class="nav-item px-5 py-2 rounded-full text-xs font-medium tracking-wide transition-all duration-200 hover:text-lunea-700 hover:bg-white/70">Katalog Produk</button>
+                <button onclick="switchPage('contact')" id="nav-btn-contact" class="nav-item px-5 py-2 rounded-full text-xs font-medium tracking-wide transition-all duration-200 hover:text-lunea-700 hover:bg-white/70">Kontak</button>
+            </nav>
+
+            <!-- Quick Action Icons -->
+            <div class="flex items-center space-x-2.5 sm:space-x-3 text-lunea-800">
+                <button onclick="toggleSearchModal()" class="w-10 h-10 rounded-full bg-white/80 hover:bg-white border border-rose-100 hover:border-rose-300 flex items-center justify-center hover:text-lunea-700 shadow-xs hover:shadow-md transition-all duration-200" title="Cari Produk">
+                    <i class="fa-solid fa-magnifying-glass text-sm"></i>
+                </button>
+                <button onclick="toggleCartDrawer()" class="relative w-10 h-10 rounded-full bg-white/80 hover:bg-white border border-rose-100 hover:border-rose-300 flex items-center justify-center hover:text-lunea-700 shadow-xs hover:shadow-md transition-all duration-200" title="Keranjang Belanja">
+                    <i class="fa-solid fa-bag-shopping text-sm"></i>
+                    <span id="cart-badge" class="absolute -top-1 -right-1 bg-gradient-to-r from-lunea-600 to-rose-600 text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center shadow-md ring-2 ring-white">0</span>
+                </button>
+                <button onclick="toggleMobileMenu()" class="md:hidden w-10 h-10 rounded-full bg-white/80 hover:bg-white border border-rose-100 flex items-center justify-center hover:text-lunea-700 shadow-xs transition-colors">
+                    <i class="fa-solid fa-bars text-base"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Dropdown Navigation -->
+        <!-- FIX Bug #3: buttons use inline-flex (not block + flex conflict) -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white/95 backdrop-blur-xl border-b border-rose-200/70 px-6 pt-3 pb-5 space-y-1 shadow-xl">
+            <button onclick="switchPage('home'); toggleMobileMenu();" class="w-full inline-flex items-center justify-between py-3 font-semibold text-lunea-800 hover:text-lunea-600 border-b border-rose-100 transition-colors">
+                <span>Home</span>
+                <i class="fa-solid fa-chevron-right text-xs text-rose-300"></i>
+            </button>
+            <button onclick="switchPage('about'); toggleMobileMenu();" class="w-full inline-flex items-center justify-between py-3 font-semibold text-lunea-800 hover:text-lunea-600 border-b border-rose-100 transition-colors">
+                <span>Tentang Kami</span>
+                <i class="fa-solid fa-chevron-right text-xs text-rose-300"></i>
+            </button>
+            <button onclick="switchPage('products'); toggleMobileMenu();" class="w-full inline-flex items-center justify-between py-3 font-semibold text-lunea-800 hover:text-lunea-600 border-b border-rose-100 transition-colors">
+                <span>Katalog Produk</span>
+                <i class="fa-solid fa-chevron-right text-xs text-rose-300"></i>
+            </button>
+            <button onclick="switchPage('contact'); toggleMobileMenu();" class="w-full inline-flex items-center justify-between py-3 font-semibold text-lunea-800 hover:text-lunea-600 transition-colors">
+                <span>Kontak & Konsultasi</span>
+                <i class="fa-solid fa-chevron-right text-xs text-rose-300"></i>
+            </button>
+        </div>
+    </header>
+
+    <main class="flex-grow relative z-10">
+
+        <!-- ================= PAGE: HOME ================= -->
+        <div id="page-home" class="page-view animate-fadeIn">
+            
+            <!-- Hero Section -->
+            <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-6 sm:pt-16 sm:pb-8">
+                <div class="relative overflow-hidden rounded-[2.8rem] bg-gradient-to-br from-[#FFF5F6] via-[#FDF0F3] to-[#F7E2E6] p-8 sm:p-14 lg:p-20 border border-rose-200/80 shadow-[0_20px_50px_-15px_rgba(140,57,71,0.14)]">
+                    
+                    <!-- FIX Bug #2 & #8: bg-radial-gradient is not a Tailwind utility.
+                         Replaced with valid inline style for the specular backlight. -->
+                    <div class="absolute -top-24 -right-24 w-96 h-96 rounded-full pointer-events-none" style="background: radial-gradient(circle, rgba(255,255,255,0.85) 0%, transparent 70%); filter: blur(40px);"></div>
+                    <div class="absolute -bottom-20 -left-20 w-80 h-80 bg-rose-200/40 rounded-full filter blur-3xl pointer-events-none"></div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center relative z-10">
+                        
+                        <!-- Left Copy Column -->
+                        <div class="lg:col-span-7 space-y-7">
+
+                            <!-- Headline with High-End Serif & Italic Accent -->
+                            <h1 class="text-4xl sm:text-5xl lg:text-[4rem] font-serif font-extrabold text-lunea-900 leading-[1.1] tracking-tight">
+                                Reveal Your <br class="hidden sm:inline">
+                                <span class="italic font-normal text-lunea-600 bg-gradient-to-r from-lunea-700 via-rose-600 to-lunea-600 bg-clip-text text-transparent">Natural Glow</span>
+                            </h1>
+
+                            <p class="text-lunea-800/90 text-base sm:text-lg max-w-xl leading-relaxed font-normal">
+                                Sentuhan kelembutan botani murni yang menutrisi setiap lapisan kulit. Mengembalikan keseimbangan skin barrier dengan tekstur seringan embun untuk kilau sehat tanpa rasa lengket.
+                            </p>
+
+                            <!-- CTAs & Micro Trust -->
+                            <div class="pt-2 flex flex-wrap items-center gap-4">
+                                <button onclick="switchPage('products')" class="btn-luxury inline-flex items-center space-x-3 font-semibold px-8 py-4 rounded-2xl text-sm sm:text-base">
+                                    <span>Jelajahi Koleksi</span>
+                                    <i class="fa-solid fa-arrow-right text-xs"></i>
+                                </button>
+                                <button onclick="switchPage('about')" class="btn-outline-luxury inline-flex items-center space-x-2 font-semibold px-7 py-4 rounded-2xl text-sm sm:text-base">
+                                    <span>Cerita Filosofi</span>
+                                </button>
+                            </div>
+
+                        </div>
+
+                        <!-- Right Editorial Visual Column with Layered Floating Elements -->
+                        <div class="lg:col-span-5 relative flex justify-center">
+                            
+                            <!-- Pedestal Glow Behind Bottle Box -->
+                            <div class="absolute w-72 h-72 sm:w-96 sm:h-96 rounded-full bg-gradient-to-tr from-rose-300/40 via-white/80 to-rose-200/30 filter blur-2xl -z-10"></div>
+                            
+                            <div class="relative w-full max-w-sm sm:max-w-md p-4 bg-white/70 backdrop-blur-md rounded-3xl border border-white/90 shadow-[0_20px_50px_-10px_rgba(140,57,71,0.2)] group transition-all duration-500">
+                                
+                                <div class="relative overflow-hidden rounded-2xl bg-gradient-to-b from-[#FFFDFD] to-[#FAF1F3] p-3 border border-rose-100">
+                                    <img src="assets/img/Skincare Lunea.png" alt="Rangkaian Skincare Lunea Skin" class="w-full h-auto object-cover rounded-xl shadow-xs transform group-hover:scale-[1.03] transition-transform duration-700" onerror="this.onerror=null; this.src='Gambar/Skincare Lunea.png';">
+                                </div>
+
+                                <!-- Floating Glass Accolade 1 (Bottom Left) -->
+                                <div class="absolute -bottom-4 -left-4 bg-white/95 backdrop-blur-md border border-rose-200 py-2.5 px-4 rounded-2xl shadow-[0_10px_25px_-5px_rgba(140,57,71,0.12)] flex items-center space-x-3">
+                                    <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-rose-100 to-rose-200 flex items-center justify-center text-lunea-700 shadow-inner">
+                                        <i class="fa-solid fa-droplet text-sm"></i>
+                                    </div>
+                                    <div>
+                                        <span class="block text-xs font-bold text-lunea-900">Triple Hydration</span>
+                                        <span class="text-[10px] text-lunea-600">Kunci kelembapan alami 24H</span>
+                                    </div>
+                                </div>
+
+                                <!-- Floating Glass Accolade 2 (Top Right) -->
+                                <div class="absolute -top-4 -right-4 bg-white/95 backdrop-blur-md border border-rose-200 py-2 px-3.5 rounded-2xl shadow-[0_10px_25px_-5px_rgba(140,57,71,0.12)] flex items-center space-x-2 text-gold-500">
+                                    <i class="fa-solid fa-certificate text-sm"></i>
+                                    <span class="text-lunea-900 font-bold text-xs">Pilihan #1 Editor</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+
+            <!-- Featured Products Section -->
+            <!-- FIX Bug #5: Unify section vertical spacing to py-14 across the page -->
+            <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4 mb-10 pb-5 border-b border-rose-200/80">
+                    <div>
+                        <div class="pill-badge mb-3">
+                            <i class="fa-solid fa-spa text-lunea-600"></i>
+                            <span>Signature Selection</span>
+                        </div>
+                        <h2 class="text-3xl sm:text-4xl font-serif font-bold text-lunea-900">Produk Terlaris Lunea Skin</h2>
+                        <p class="text-sm text-lunea-600 mt-1.5">Kombinasi formulasi aktif botani pilihan untuk kilau wajah sehat bercahaya.</p>
+                    </div>
+                    <button onclick="switchPage('products')" class="inline-flex items-center space-x-2 text-lunea-700 hover:text-lunea-900 font-semibold text-sm group transition-colors">
+                        <span>Lihat Semua Katalog</span>
+                        <i class="fa-solid fa-chevron-right text-xs group-hover:translate-x-1 transition-transform"></i>
+                    </button>
+                </div>
+
+                <!-- FIX Bug #6: Unified grid gap to gap-7 everywhere for consistency -->
+                <div id="home-products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7">
+                    <!-- Injected via JavaScript -->
+                </div>
+            </section>
+
+            <!-- Skincare Ritual Guide -->
+            <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+                <div class="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-white via-rose-50/50 to-white p-8 sm:p-14 border border-rose-200/80 shadow-[0_15px_40px_-10px_rgba(140,57,71,0.07)]">
+                    
+                    <div class="text-center max-w-2xl mx-auto mb-10 space-y-3">
+                        <div class="pill-badge mx-auto">
+                            <i class="fa-solid fa-heart-pulse text-lunea-600"></i>
+                            <span>Panduan Perawatan</span>
+                        </div>
+                        <h2 class="text-3xl sm:text-4xl font-serif font-bold text-lunea-900">Ritual Harian Untuk Hasil Maksimal</h2>
+                        <p class="text-sm text-lunea-600">Kombinasikan rangkaian produk sesuai ritme alami kulit Anda dari pagi hingga malam hari.</p>
+                        
+                        <!-- Toggle Buttons -->
+                        <div class="inline-flex p-1.5 bg-rose-100/70 rounded-full border border-rose-200/80 mt-2">
+                            <button onclick="switchRitual('morning')" id="ritual-btn-morning" class="px-6 py-2 rounded-full text-xs font-bold transition-all duration-200 bg-white text-lunea-800 shadow-xs">
+                                <i class="fa-solid fa-sun mr-1.5 text-amber-500"></i> Morning Routine
+                            </button>
+                            <button onclick="switchRitual('night')" id="ritual-btn-night" class="px-6 py-2 rounded-full text-xs font-semibold text-lunea-600 hover:text-lunea-900 transition-all duration-200">
+                                <i class="fa-solid fa-moon mr-1.5 text-lunea-500"></i> Night Routine
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Morning Steps -->
+                    <!-- FIX Bug #7: step numbers now use .step-badge class (inline-flex) -->
+                    <div id="ritual-morning" class="ritual-steps grid grid-cols-1 md:grid-cols-3 gap-5">
+                        <div class="bg-white/85 p-6 rounded-2xl border border-rose-100 shadow-xs hover:shadow-md hover:-translate-y-1 transition-all duration-300">
+                            <span class="step-badge bg-rose-100 text-lunea-700">1</span>
+                            <h3 class="font-bold text-lunea-900 text-base mb-2">Pembersihan Lembut</h3>
+                            <p class="text-xs text-lunea-700 leading-relaxed mb-3">Gunakan <strong>Facial Wash</strong> dengan air hangat — membersihkan minyak berlebih tanpa mengikis kelembapan alami.</p>
+                            <span class="text-[11px] font-semibold text-lunea-700 bg-rose-50 border border-rose-100 px-2.5 py-1 rounded-lg inline-block">100 ml · pH 5.5 Seimbang</span>
+                        </div>
+
+                        <div class="bg-white/85 p-6 rounded-2xl border border-rose-100 shadow-xs hover:shadow-md hover:-translate-y-1 transition-all duration-300">
+                            <span class="step-badge bg-rose-100 text-lunea-700">2</span>
+                            <h3 class="font-bold text-lunea-900 text-base mb-2">Nutrisi & Hidrasi</h3>
+                            <p class="text-xs text-lunea-700 leading-relaxed mb-3">Tepuk <strong>Toner</strong>, susul dengan 2–3 tetes <strong>Serum</strong>, tutup dengan lapisan tipis <strong>Moisturizer</strong>.</p>
+                            <span class="text-[11px] font-semibold text-lunea-700 bg-rose-50 border border-rose-100 px-2.5 py-1 rounded-lg inline-block">Cerahkan · Kunci Hidrasi</span>
+                        </div>
+
+                        <div class="bg-white/85 p-6 rounded-2xl border border-rose-100 shadow-xs hover:shadow-md hover:-translate-y-1 transition-all duration-300">
+                            <span class="step-badge bg-rose-100 text-lunea-700">3</span>
+                            <h3 class="font-bold text-lunea-900 text-base mb-2">Proteksi Matahari</h3>
+                            <p class="text-xs text-lunea-700 leading-relaxed mb-3">Aplikasikan <strong>Sunscreen SPF 30 PA+++</strong> 15 menit sebelum keluar — tameng dari UV dan polusi kota.</p>
+                            <span class="text-[11px] font-semibold text-lunea-700 bg-rose-50 border border-rose-100 px-2.5 py-1 rounded-lg inline-block">No White Cast · Anti UV</span>
+                        </div>
+                    </div>
+
+                    <!-- Night Steps (Hidden by default) -->
+                    <div id="ritual-night" class="ritual-steps grid grid-cols-1 md:grid-cols-3 gap-5 hidden">
+                        <div class="bg-white/85 p-6 rounded-2xl border border-rose-100 shadow-xs hover:shadow-md hover:-translate-y-1 transition-all duration-300">
+                            <span class="step-badge bg-lunea-100 text-lunea-800">1</span>
+                            <h3 class="font-bold text-lunea-900 text-base mb-2">Deep Cleanse & Refresh</h3>
+                            <p class="text-xs text-lunea-700 leading-relaxed mb-3">Bersihkan sisa makeup dan polusi seharian dengan <strong>Facial Wash</strong>, segarkan kembali dengan <strong>Toner</strong>.</p>
+                            <span class="text-[11px] font-semibold text-lunea-700 bg-rose-50 border border-rose-100 px-2.5 py-1 rounded-lg inline-block">Pori-Pori Bernapas</span>
+                        </div>
+
+                        <div class="bg-white/85 p-6 rounded-2xl border border-rose-100 shadow-xs hover:shadow-md hover:-translate-y-1 transition-all duration-300">
+                            <span class="step-badge bg-lunea-100 text-lunea-800">2</span>
+                            <h3 class="font-bold text-lunea-900 text-base mb-2">Intensive Serum Glow</h3>
+                            <p class="text-xs text-lunea-700 leading-relaxed mb-3">Tepuk <strong>Brightening Serum</strong> perlahan agar Niacinamide meresap sempurna ke lapisan terdalam kulit.</p>
+                            <span class="text-[11px] font-semibold text-lunea-700 bg-rose-50 border border-rose-100 px-2.5 py-1 rounded-lg inline-block">Perbaikan Sel Malam</span>
+                        </div>
+
+                        <div class="bg-white/85 p-6 rounded-2xl border border-rose-100 shadow-xs hover:shadow-md hover:-translate-y-1 transition-all duration-300">
+                            <span class="step-badge bg-lunea-100 text-lunea-800">3</span>
+                            <h3 class="font-bold text-lunea-900 text-base mb-2">Overnight Repair Cream</h3>
+                            <p class="text-xs text-lunea-700 leading-relaxed mb-3">Tutup dengan <strong>Night Cream</strong> — formula nutrisi intensif yang bekerja saat Anda terlelap, bangun glowing.</p>
+                            <span class="text-[11px] font-semibold text-lunea-700 bg-rose-50 border border-rose-100 px-2.5 py-1 rounded-lg inline-block">Regenerasi Semalam</span>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- Botanical Ingredients Spotlight -->
+            <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+                <div class="text-center max-w-2xl mx-auto mb-12 space-y-3">
+                    <div class="pill-badge mx-auto">
+                        <i class="fa-solid fa-leaf text-sage-600"></i>
+                        <span>Komposisi Unggulan</span>
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl font-serif font-bold text-lunea-900">Bahan Alami Pilihan</h2>
+                    <p class="text-sm text-lunea-600">Dipilih secara etis dari alam dan disempurnakan dengan teknologi dermatologi modern.</p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="glass-card p-6 rounded-3xl space-y-3 text-center sm:text-left">
+                        <div class="w-12 h-12 rounded-2xl bg-rose-100 text-lunea-600 flex items-center justify-center text-xl mx-auto sm:mx-0 shadow-inner">
+                            <i class="fa-solid fa-spa"></i>
+                        </div>
+                        <h4 class="font-serif font-bold text-lg text-lunea-900">Rose Damascena</h4>
+                        <p class="text-xs text-lunea-700 leading-relaxed">Ekstrak mawar yang menenangkan kemerahan, meredakan stres kulit, dan memberi hidrasi mendalam.</p>
+                    </div>
+
+                    <div class="glass-card p-6 rounded-3xl space-y-3 text-center sm:text-left">
+                        <div class="w-12 h-12 rounded-2xl bg-sage-100 text-sage-600 flex items-center justify-center text-xl mx-auto sm:mx-0 shadow-inner">
+                            <i class="fa-solid fa-flask"></i>
+                        </div>
+                        <h4 class="font-serif font-bold text-lg text-lunea-900">Niacinamide 5%</h4>
+                        <p class="text-xs text-lunea-700 leading-relaxed">Konsentrat vitamin B3 murni yang membantu memudarkan noda hitam dan meratakan warna kulit.</p>
+                    </div>
+
+                    <div class="glass-card p-6 rounded-3xl space-y-3 text-center sm:text-left">
+                        <div class="w-12 h-12 rounded-2xl bg-rose-100 text-lunea-600 flex items-center justify-center text-xl mx-auto sm:mx-0 shadow-inner">
+                            <i class="fa-solid fa-droplet"></i>
+                        </div>
+                        <h4 class="font-serif font-bold text-lg text-lunea-900">Triple Hyaluron</h4>
+                        <p class="text-xs text-lunea-700 leading-relaxed">Tiga molekul pengikat air yang menembus lapisan kulit hingga ke dalam tanpa rasa lengket.</p>
+                    </div>
+
+                    <div class="glass-card p-6 rounded-3xl space-y-3 text-center sm:text-left">
+                        <div class="w-12 h-12 rounded-2xl bg-sage-100 text-sage-600 flex items-center justify-center text-xl mx-auto sm:mx-0 shadow-inner">
+                            <i class="fa-solid fa-seedling"></i>
+                        </div>
+                        <h4 class="font-serif font-bold text-lg text-lunea-900">Camellia Sinensis</h4>
+                        <p class="text-xs text-lunea-700 leading-relaxed">Antioksidan tinggi yang melindungi skin barrier dari polusi lingkungan dan radikal bebas.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Testimonials -->
+            <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 pb-20">
+                <div class="relative overflow-hidden rounded-[2.8rem] bg-gradient-to-br from-[#FFF8F9] via-[#FAF0F3] to-[#F5E6E9] p-8 sm:p-14 border border-rose-200/90 shadow-[0_20px_50px_-15px_rgba(140,57,71,0.08)]">
+                    
+                    <div class="text-center max-w-2xl mx-auto mb-12 space-y-2">
+                        <div class="pill-badge mx-auto">
+                            <i class="fa-solid fa-comments text-lunea-600"></i>
+                            <span>Ulasan Nyata</span>
+                        </div>
+                        <h2 class="text-3xl sm:text-4xl font-serif font-bold text-lunea-900">Apa Kata Pengguna Lunea Skin</h2>
+                        <p class="text-sm text-lunea-600">Kisah nyata dari ribuan wanita Indonesia yang telah merasakan transformasi alami.</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        
+                        <div class="glass-card p-6 sm:p-7 rounded-3xl space-y-4">
+                            <div class="flex text-gold-500 text-xs space-x-1">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                            </div>
+                            <p class="text-xs sm:text-sm text-lunea-900 leading-relaxed italic">
+                                "Tekstur serumnya juara banget, gampang meresap dan nggak greasy di kulit berminyakku. Dalam 2 minggu kulit terasa jauh lebih plumpy dan glowing sehat!"
+                            </p>
+                            <div class="flex items-center space-x-3 pt-2 border-t border-rose-100">
+                                <div class="w-9 h-9 rounded-full bg-rose-200 text-lunea-800 font-bold text-xs flex items-center justify-center">AD</div>
+                                <div>
+                                    <h4 class="text-xs font-bold text-lunea-900">Anindya D.</h4>
+                                    <span class="text-[10px] text-sage-600 font-semibold"><i class="fa-solid fa-circle-check mr-1"></i>Verified Buyer (Serum & Toner)</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="glass-card p-6 sm:p-7 rounded-3xl space-y-4">
+                            <div class="flex text-gold-500 text-xs space-x-1">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                            </div>
+                            <p class="text-xs sm:text-sm text-lunea-900 leading-relaxed italic">
+                                "Sunscreen-nya beneran nggak ninggalin white cast sama sekali. Kulit sensitifku yang gampang merah aman banget pakai rangkaian ini. Very recommended!"
+                            </p>
+                            <div class="flex items-center space-x-3 pt-2 border-t border-rose-100">
+                                <div class="w-9 h-9 rounded-full bg-rose-200 text-lunea-800 font-bold text-xs flex items-center justify-center">SP</div>
+                                <div>
+                                    <h4 class="text-xs font-bold text-lunea-900">Siti Pratiwi</h4>
+                                    <span class="text-[10px] text-sage-600 font-semibold"><i class="fa-solid fa-circle-check mr-1"></i>Verified Buyer (Sunscreen & Wash)</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="glass-card p-6 sm:p-7 rounded-3xl space-y-4">
+                            <div class="flex text-gold-500 text-xs space-x-1">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                            </div>
+                            <p class="text-xs sm:text-sm text-lunea-900 leading-relaxed italic">
+                                "Night cream-nya pas bangun tidur bikin muka kenyal banget. Wangi mawarnya sangat calming dan relaxing, berasa perawatan spa di rumah sendiri."
+                            </p>
+                            <div class="flex items-center space-x-3 pt-2 border-t border-rose-100">
+                                <div class="w-9 h-9 rounded-full bg-rose-200 text-lunea-800 font-bold text-xs flex items-center justify-center">CL</div>
+                                <div>
+                                    <h4 class="text-xs font-bold text-lunea-900">Clarissa L.</h4>
+                                    <span class="text-[10px] text-sage-600 font-semibold"><i class="fa-solid fa-circle-check mr-1"></i>Verified Buyer (Paket Lengkap)</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+        <!-- ================= PAGE: PRODUCTS (KATALOG) ================= -->
+        <div id="page-products" class="page-view hidden animate-fadeIn">
+            <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16">
+                
+                <!-- Catalog Header -->
+                <div class="text-center max-w-2xl mx-auto mb-12 space-y-3">
+                    <div class="pill-badge mx-auto">
+                        <i class="fa-solid fa-gem text-lunea-600"></i>
+                        <span>Katalog Perawatan</span>
+                    </div>
+                    <h1 class="text-3xl sm:text-5xl font-serif font-bold text-lunea-900">Koleksi Perawatan Lunea Skin</h1>
+                    <p class="text-lunea-700 text-sm sm:text-base leading-relaxed">Setiap formula dirancang untuk melengkapi rutinitas harian kulit Anda dengan hasil nyata dan kelembutan maksimal.</p>
+                </div>
+
+                <!-- Sleek Filter Pills & Search Container -->
+                <div class="glass-card p-4 sm:p-5 rounded-3xl mb-10 flex flex-col md:flex-row justify-between items-center gap-4">
+                    
+                    <!-- Category Buttons -->
+                    <div class="flex items-center space-x-2 w-full md:w-auto overflow-x-auto pb-1 md:pb-0 scrollbar-none">
+                        <button onclick="filterProducts('all')" class="filter-btn px-4 py-2 rounded-full text-xs font-semibold bg-lunea-700 text-white shadow-xs transition-all whitespace-nowrap" data-category="all">Semua Produk</button>
+                        <button onclick="filterProducts('Cleanser')" class="filter-btn px-4 py-2 rounded-full text-xs font-medium bg-white text-lunea-800 border border-rose-200 hover:bg-rose-50 transition-all whitespace-nowrap" data-category="Cleanser">Cleanser</button>
+                        <button onclick="filterProducts('Toner')" class="filter-btn px-4 py-2 rounded-full text-xs font-medium bg-white text-lunea-800 border border-rose-200 hover:bg-rose-50 transition-all whitespace-nowrap" data-category="Toner">Toner</button>
+                        <button onclick="filterProducts('Serum')" class="filter-btn px-4 py-2 rounded-full text-xs font-medium bg-white text-lunea-800 border border-rose-200 hover:bg-rose-50 transition-all whitespace-nowrap" data-category="Serum">Serum</button>
+                        <button onclick="filterProducts('Moisturizer')" class="filter-btn px-4 py-2 rounded-full text-xs font-medium bg-white text-lunea-800 border border-rose-200 hover:bg-rose-50 transition-all whitespace-nowrap" data-category="Moisturizer">Moisturizer</button>
+                        <button onclick="filterProducts('Sunscreen')" class="filter-btn px-4 py-2 rounded-full text-xs font-medium bg-white text-lunea-800 border border-rose-200 hover:bg-rose-50 transition-all whitespace-nowrap" data-category="Sunscreen">Sunscreen</button>
+                    </div>
+                    
+                    <!-- Live Search Bar -->
+                    <div class="relative w-full md:w-72">
+                        <input type="text" id="product-search-input" oninput="handleSearchInput(this.value)" placeholder="Cari nama produk..." class="w-full bg-white/95 border border-rose-200 rounded-full px-4 py-2.5 text-xs sm:text-sm text-lunea-900 focus:outline-none focus:ring-2 focus:ring-lunea-400 pl-10 shadow-xs">
+                        <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-lunea-400 text-xs"></i>
+                    </div>
+                </div>
+
+                <!-- Products Grid — gap unified to gap-7 -->
+                <div id="all-products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7">
+                    <!-- Products rendered via JS -->
+                </div>
+            </section>
+        </div>
+
+        <!-- ================= PAGE: DETAIL PRODUK ================= -->
+        <div id="page-detail" class="page-view hidden animate-fadeIn">
+            <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
+                
+                <button onclick="switchPage('products')" class="inline-flex items-center space-x-2 text-lunea-700 hover:text-lunea-900 font-semibold mb-8 text-sm group">
+                    <i class="fa-solid fa-arrow-left group-hover:-translate-x-1 transition-transform"></i>
+                    <span>Kembali ke Katalog Produk</span>
+                </button>
+
+                <!-- Detail Master Card -->
+                <div class="glass-card rounded-[2.8rem] p-6 sm:p-12 lg:p-14 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+                    
+                    <!-- Gallery Column (With Pedestal Lighting & Switchers) -->
+                    <div class="lg:col-span-6 space-y-4">
+                        <div class="product-pod w-full h-80 sm:h-[420px] rounded-3xl overflow-hidden flex items-center justify-center p-6 relative">
+                            <img id="detail-main-img" src="assets/img/Serum.png" alt="Detail Produk" class="max-w-[85%] max-h-[85%] object-contain hover:scale-105 transition-transform duration-500 drop-shadow-[0_15px_25px_rgba(140,57,71,0.18)]" onerror="this.onerror=null; this.src='Gambar/Serum.png';">
+                        </div>
+
+                        <!-- 3 Thumbnails Row -->
+                        <div class="grid grid-cols-3 gap-3">
+                            <div onclick="selectDetailThumb(1)" class="h-24 rounded-2xl overflow-hidden border-2 border-lunea-600 cursor-pointer bg-white/90 p-2 hover:border-lunea-700 transition-all shadow-xs flex items-center justify-center" id="thumb-wrap-1">
+                                <img id="thumb-img-1" src="assets/img/Serum.png" class="max-h-full max-w-full object-contain" alt="Produk Utama" onerror="this.onerror=null; this.src='Gambar/Serum.png';">
+                            </div>
+                            <div onclick="selectDetailThumb(2)" class="h-24 rounded-2xl overflow-hidden border border-rose-200 cursor-pointer bg-white/90 p-2 hover:border-rose-400 transition-all shadow-xs flex items-center justify-center" id="thumb-wrap-2">
+                                <img id="thumb-img-2" src="assets/img/Skincare Lunea.png" class="max-h-full max-w-full object-contain" alt="Rangkaian Produk" onerror="this.onerror=null; this.src='Gambar/Skincare Lunea.png';">
+                            </div>
+                            <div onclick="selectDetailThumb(3)" class="h-24 rounded-2xl overflow-hidden border border-rose-200 cursor-pointer bg-white/90 p-2 hover:border-rose-400 transition-all shadow-xs flex items-center justify-center" id="thumb-wrap-3">
+                                <img id="thumb-img-3" src="assets/img/LUNEA SKIN.png" class="max-h-full max-w-full object-contain" alt="Logo Lunea Skin" onerror="this.onerror=null; this.src='Gambar/LUNEA SKIN.png';">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Info Column -->
+                    <div class="lg:col-span-6 space-y-6">
+                        <div class="space-y-3.5">
+                            <div class="pill-badge">
+                                <i class="fa-solid fa-sparkles text-lunea-600"></i>
+                                <span id="detail-category-badge">Perawatan Kulit</span>
+                            </div>
+
+                            <h1 id="detail-title" class="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-lunea-900 leading-tight">Lunea Skin Brightening Serum</h1>
+                            
+                            <!-- Rating -->
+                            <div class="flex items-center space-x-3">
+                                <div class="flex text-gold-500 text-sm">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star-half-stroke"></i>
+                                </div>
+                                <span class="text-xs sm:text-sm font-semibold text-lunea-800">4.9 <span class="text-lunea-500 font-normal">(184 pembeli terverifikasi)</span></span>
+                            </div>
+
+                            <!-- Price Display -->
+                            <div class="flex items-baseline space-x-3 pt-1">
+                                <div id="detail-price" class="text-2xl sm:text-3xl font-serif font-bold text-lunea-900">Rp 189.000</div>
+                                <span id="detail-old-price" class="text-sm text-lunea-400 line-through">Rp 220.000</span>
+                                <span class="bg-rose-100 text-lunea-700 text-[10px] font-bold px-2 py-0.5 rounded-md">HEMAT 15%</span>
+                            </div>
+
+                            <p id="detail-desc" class="text-lunea-800 leading-relaxed text-sm sm:text-base pt-1">
+                                Serum vitamin C dan niacinamide yang ringan, yang secara nyata mencerahkan dan meratakan warna kulit tanpa rasa perih.
+                            </p>
+
+                            <!-- Key Badges Strip -->
+                            <div class="pt-2 flex flex-wrap gap-2 text-xs text-lunea-700 font-medium">
+                                <span class="bg-rose-50 border border-rose-200 px-3 py-1.5 rounded-xl flex items-center space-x-1.5">
+                                    <i class="fa-solid fa-flask text-lunea-500"></i>
+                                    <span>Volume: <strong id="detail-size" class="text-lunea-900">30 ml</strong></span>
+                                </span>
+                                <span class="bg-sage-50 border border-sage-100 text-sage-700 px-3 py-1.5 rounded-xl flex items-center space-x-1.5">
+                                    <i class="fa-solid fa-certificate"></i>
+                                    <span>BPOM Registered</span>
+                                </span>
+                                <span class="bg-amber-50 border border-amber-200 text-amber-800 px-3 py-1.5 rounded-xl flex items-center space-x-1.5">
+                                    <i class="fa-solid fa-leaf"></i>
+                                    <span>100% Halal Certified</span>
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- Action Bar -->
+                        <div class="space-y-4 pt-6 border-t border-rose-200/80">
+                            <div class="flex items-center space-x-4">
+                                <button onclick="buyNowFromDetail()" class="btn-luxury flex-grow font-semibold py-4 px-6 rounded-2xl text-center flex items-center justify-center space-x-2 text-sm sm:text-base">
+                                    <i class="fa-solid fa-bag-shopping text-sm"></i>
+                                    <span>Beli Sekarang</span>
+                                </button>
+                                <button onclick="toggleWishlist(this)" class="w-14 h-14 rounded-2xl border border-rose-200 bg-white flex items-center justify-center text-lunea-600 hover:bg-rose-50 hover:text-rose-600 transition-colors shadow-xs" title="Tambah ke Favorit">
+                                    <i class="fa-regular fa-heart text-xl"></i>
+                                </button>
+                            </div>
+                            <p class="text-[11px] text-lunea-500 flex items-center space-x-1.5 justify-center sm:justify-start">
+                                <i class="fa-solid fa-truck-shield"></i>
+                                <span>Garansi 100% Produk Original langsung dari Rumah Produksi Lunea Skin.</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Usage & Ingredients Details -->
+                <div class="mt-8 glass-card rounded-[2.5rem] p-8 sm:p-12 space-y-4">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-9 h-9 rounded-xl bg-rose-100 text-lunea-700 flex items-center justify-center text-sm">
+                            <i class="fa-solid fa-leaf"></i>
+                        </div>
+                        <h2 class="text-xl font-serif font-bold text-lunea-900">Cara Penggunaan & Kandungan Botani Utama</h2>
+                    </div>
+                    <p class="text-lunea-800 leading-relaxed text-sm sm:text-base">
+                        Gunakan pada pagi dan malam hari setelah membersihkan wajah dan mengaplikasikan toner. Teteskan 2–3 tetes pada telapak tangan atau langsung ke area dahi dan pipi, ratakan secara lembut dengan gerakan memutar ke atas, lalu tepuk perlahan hingga meresap sempurna. Diformulasikan dengan konsentrat <em>Camellia Sinensis</em>, Niacinamide 5%, Vitamin C generasi baru, serta <em>Hyaluronic Acid</em> tripel molekul untuk hidrasi menyeluruh.
+                    </p>
+                </div>
+            </section>
+        </div>
+
+        <!-- ================= PAGE: ABOUT ================= -->
+        <div id="page-about" class="page-view hidden animate-fadeIn">
+            <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16">
+                
+                <!-- About Header -->
+                <div class="text-center max-w-3xl mx-auto mb-14 space-y-3">
+                    <div class="pill-badge mx-auto">
+                        <i class="fa-solid fa-heart text-lunea-600"></i>
+                        <span>Cerita Kami</span>
+                    </div>
+                    <h1 class="text-3xl sm:text-5xl font-serif font-bold text-lunea-900">Filosofi Lunea Skin</h1>
+                    <p class="text-lunea-700 text-base sm:text-lg leading-relaxed">Merayakan kecantikan alami Anda melalui kesederhanaan botani murni yang aman dan bermakna.</p>
+                </div>
+
+                <!-- Story Master Box -->
+                <div class="glass-card rounded-[2.8rem] p-8 sm:p-14 lg:p-16 mb-16 relative overflow-hidden">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                        <div class="space-y-6">
+                            <h2 class="text-2xl sm:text-3xl lg:text-4xl font-serif font-bold text-lunea-900 leading-snug">
+                                Kulit Sehat Tidak Butuh Ritual Rumit
+                            </h2>
+                            <p class="text-lunea-800 leading-relaxed text-sm sm:text-base">
+                                Lunea Skin berakar pada keyakinan bahwa perawatan kulit sejati bukanlah menutupi ketidaksempurnaan, melainkan menutrisi sel kulit agar mampu memancarkan kilau alaminya dari dalam.
+                            </p>
+                            <p class="text-lunea-800 leading-relaxed text-sm sm:text-base">
+                                Kami memadukan kearifan herbal botani nusantara dengan standar dermatologi modern bertaraf internasional. Formula kami bersih, bebas paraben, cruelty-free, dan memiliki sertifikasi Halal serta BPOM resmi.
+                            </p>
+                            
+                            <div class="grid grid-cols-2 gap-4 pt-3">
+                                <div class="bg-white/90 border border-rose-100 p-4 rounded-2xl shadow-xs">
+                                    <i class="fa-solid fa-flask-vial text-lunea-600 mb-2 text-base"></i>
+                                    <h4 class="font-bold text-sm text-lunea-900">Dermatology Approved</h4>
+                                    <p class="text-xs text-lunea-600 mt-1">Sangat ramah untuk kulit sensitif dan mudah iritasi.</p>
+                                </div>
+                                <div class="bg-white/90 border border-rose-100 p-4 rounded-2xl shadow-xs">
+                                    <i class="fa-solid fa-recycle text-sage-600 mb-2 text-base"></i>
+                                    <h4 class="font-bold text-sm text-lunea-900">Eco-Conscious</h4>
+                                    <p class="text-xs text-lunea-600 mt-1">Kemasan botol kaca dapat didaur ulang secara berkelanjutan.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="relative group">
+                            <div class="absolute -inset-3 bg-gradient-to-tr from-rose-200 via-rose-100 to-white rounded-3xl -z-10 transform rotate-1 group-hover:rotate-0 transition-transform duration-500"></div>
+                            <img src="assets/img/Skincare Lunea.png" alt="Filosofi Lunea Skin" class="w-full h-auto object-cover rounded-2xl shadow-md border border-rose-200" onerror="this.onerror=null; this.src='Gambar/Skincare Lunea.png';">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ Accordion: Clean & Smooth -->
+                <div class="max-w-3xl mx-auto space-y-4">
+                    <div class="text-center mb-8">
+                        <h3 class="text-2xl font-serif font-bold text-lunea-900">Pertanyaan yang Sering Diajukan</h3>
+                        <p class="text-xs sm:text-sm text-lunea-600 mt-1">Ketahui lebih dalam mengenai keamanan dan cara kerja produk Lunea Skin.</p>
+                    </div>
+
+                    <div class="glass-card rounded-2xl p-5 cursor-pointer" onclick="toggleFaq(1)">
+                        <div class="flex justify-between items-center">
+                            <h4 class="font-bold text-sm sm:text-base text-lunea-900">Apakah produk Lunea Skin aman untuk ibu hamil dan menyusui?</h4>
+                            <i id="faq-icon-1" class="fa-solid fa-chevron-down text-xs text-lunea-500 transition-transform duration-300"></i>
+                        </div>
+                        <div id="faq-answer-1" class="faq-answer">
+                            <p class="text-xs sm:text-sm text-lunea-700 pt-3 border-t border-rose-100 mt-3 leading-relaxed">
+                                Ya, sebagian besar rangkaian produk Lunea Skin diformulasikan bebas retinol, paraben, dan pewangi sintetis keras, sehingga aman digunakan oleh ibu hamil dan menyusui. Jika Anda memiliki kondisi khusus, kami tetap menyarankan konsultasi dengan dokter kandungan Anda.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="glass-card rounded-2xl p-5 cursor-pointer" onclick="toggleFaq(2)">
+                        <div class="flex justify-between items-center">
+                            <h4 class="font-bold text-sm sm:text-base text-lunea-900">Apakah produk sudah terdaftar di BPOM dan bersertifikat Halal?</h4>
+                            <i id="faq-icon-2" class="fa-solid fa-chevron-down text-xs text-lunea-500 transition-transform duration-300"></i>
+                        </div>
+                        <div id="faq-answer-2" class="faq-answer">
+                            <p class="text-xs sm:text-sm text-lunea-700 pt-3 border-t border-rose-100 mt-3 leading-relaxed">
+                                Seluruh rangkaian produk Lunea Skin telah memiliki izin edar resmi dari BPOM RI dan telah mengantongi sertifikat Halal dari MUI/BPJPH. Nomor registrasi tertera lengkap di setiap kemasan luar dan botol produk.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="glass-card rounded-2xl p-5 cursor-pointer" onclick="toggleFaq(3)">
+                        <div class="flex justify-between items-center">
+                            <h4 class="font-bold text-sm sm:text-base text-lunea-900">Berapa lama estimasi pengiriman pesanan?</h4>
+                            <i id="faq-icon-3" class="fa-solid fa-chevron-down text-xs text-lunea-500 transition-transform duration-300"></i>
+                        </div>
+                        <div id="faq-answer-3" class="faq-answer">
+                            <p class="text-xs sm:text-sm text-lunea-700 pt-3 border-t border-rose-100 mt-3 leading-relaxed">
+                                Untuk wilayah Jabodetabek, pengiriman memakan waktu 1–2 hari kerja. Untuk wilayah luar Jabodetabek dan seluruh Indonesia berkisar antara 2–4 hari kerja dengan ekspedisi resmi terpercaya.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+        </div>
+
+        <!-- ================= PAGE: CONTACT ================= -->
+        <div id="page-contact" class="page-view hidden animate-fadeIn">
+            <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16">
+                
+                <div class="text-center max-w-2xl mx-auto mb-12 space-y-3">
+                    <div class="pill-badge mx-auto">
+                        <i class="fa-solid fa-envelope text-lunea-600"></i>
+                        <span>Bantuan & Konsultasi</span>
+                    </div>
+                    <h1 class="text-3xl sm:text-5xl font-serif font-bold text-lunea-900">Hubungi Konsultan Kulit</h1>
+                    <p class="text-lunea-700 text-sm sm:text-base leading-relaxed">Bingung memilih produk yang pas untuk kondisi kulit Anda? Kami siap mendampingi Anda setiap hari.</p>
+                </div>
+
+                <!-- Contact Master Grid -->
+                <div class="glass-card rounded-[2.8rem] p-8 sm:p-14 max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12">
+                    
+                    <!-- Left Form -->
+                    <div class="lg:col-span-7 space-y-6">
+                        <div class="space-y-1.5">
+                            <h2 class="text-2xl font-serif font-bold text-lunea-900">Kirim Pesan Konsultasi</h2>
+                            <p class="text-xs sm:text-sm text-lunea-600">Ceritakan jenis kulit atau kendala Anda, konsultan kami akan membalas via email atau WhatsApp.</p>
+                        </div>
+
+                        <form id="contact-form" onsubmit="handleContactSubmit(event)" class="space-y-4">
+                            <div>
+                                <label class="block text-xs font-semibold text-lunea-800 uppercase tracking-wider mb-1.5">Nama Lengkap</label>
+                                <input type="text" required placeholder="Contoh: Putri Permata" class="w-full bg-white/95 border border-rose-200 rounded-xl px-4 py-3 text-sm text-lunea-900 focus:outline-none focus:ring-2 focus:ring-lunea-400 shadow-xs">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-lunea-800 uppercase tracking-wider mb-1.5">Alamat Email / No. WhatsApp</label>
+                                <input type="text" required placeholder="nama@email.com atau 0812xxxx" class="w-full bg-white/95 border border-rose-200 rounded-xl px-4 py-3 text-sm text-lunea-900 focus:outline-none focus:ring-2 focus:ring-lunea-400 shadow-xs">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-lunea-800 uppercase tracking-wider mb-1.5">Pertanyaan atau Keluhan Kulit</label>
+                                <textarea rows="4" required placeholder="Jelaskan kebutuhan kulit Anda (misal: kulit sensitif, bekas jerawat, kusam)..." class="w-full bg-white/95 border border-rose-200 rounded-xl px-4 py-3 text-sm text-lunea-900 focus:outline-none focus:ring-2 focus:ring-lunea-400 shadow-xs"></textarea>
+                            </div>
+                            <button type="submit" class="btn-luxury w-full font-semibold py-3.5 rounded-xl text-sm">
+                                Kirim Pesan Sekarang
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Right Info Panel -->
+                    <div class="lg:col-span-5 flex flex-col justify-between bg-white/80 p-7 rounded-3xl border border-rose-100 shadow-inner space-y-6">
+                        <div class="space-y-6">
+                            <h3 class="text-xl font-serif font-bold text-lunea-900">Kantor & Layanan Pelanggan</h3>
+                            
+                            <div class="space-y-4 text-xs sm:text-sm text-lunea-800">
+                                <div class="flex items-start space-x-3.5">
+                                    <div class="w-8 h-8 rounded-xl bg-rose-100 text-lunea-700 flex items-center justify-center shrink-0 mt-0.5">
+                                        <i class="fa-solid fa-location-dot text-xs"></i>
+                                    </div>
+                                    <span>Jl. Senopati Raya No. 45, Kebayoran Baru, Jakarta Selatan 12190</span>
+                                </div>
+                                <div class="flex items-center space-x-3.5">
+                                    <div class="w-8 h-8 rounded-xl bg-rose-100 text-lunea-700 flex items-center justify-center shrink-0">
+                                        <i class="fa-solid fa-envelope text-xs"></i>
+                                    </div>
+                                    <span>care@luneaskin.com</span>
+                                </div>
+                                <div class="flex items-center space-x-3.5">
+                                    <div class="w-8 h-8 rounded-xl bg-rose-100 text-lunea-700 flex items-center justify-center shrink-0">
+                                        <i class="fa-solid fa-phone text-xs"></i>
+                                    </div>
+                                    <span>+62 812-3456-7890 (WA Available)</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="space-y-3 pt-6 border-t border-rose-100">
+                            <h4 class="text-xs font-bold text-lunea-900 uppercase tracking-wider">Komunitas & Media Sosial</h4>
+                            <div class="flex space-x-2.5 text-lunea-700">
+                                <a href="#" class="w-10 h-10 rounded-xl bg-white border border-rose-200 flex items-center justify-center hover:bg-lunea-700 hover:text-white transition-colors shadow-xs"><i class="fa-brands fa-instagram"></i></a>
+                                <a href="#" class="w-10 h-10 rounded-xl bg-white border border-rose-200 flex items-center justify-center hover:bg-lunea-700 hover:text-white transition-colors shadow-xs"><i class="fa-brands fa-tiktok"></i></a>
+                                <a href="#" class="w-10 h-10 rounded-xl bg-white border border-rose-200 flex items-center justify-center hover:bg-lunea-700 hover:text-white transition-colors shadow-xs"><i class="fa-brands fa-whatsapp"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+        </div>
+
+    </main>
+
+    <!-- Footer: Warm, Soft Satin Tone -->
+    <footer class="bg-gradient-to-b from-[#F9EDEE] via-[#F3DEE2] to-[#ECD1D6] border-t border-rose-200/80 pt-16 pb-10 mt-auto relative z-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-10 pb-12 border-b border-rose-200/60">
+                
+                <div class="md:col-span-5 space-y-4">
+                    <div class="flex items-center">
+                        <img src="assets/img/LUNEA SKIN.png" alt="Logo Lunea Skin"
+                             class="h-16 w-auto object-contain drop-shadow-[0_2px_8px_rgba(140,57,71,0.12)]"
+                             onerror="this.onerror=null; this.src='Gambar/LUNEA SKIN.png';">
+                    </div>
+                    <p class="text-xs sm:text-sm text-lunea-800 leading-relaxed max-w-sm">
+                        Dedikasi kami adalah menghadirkan harmoni alam ke dalam rutinitas kecantikan Anda. Merawat kesehatan skin barrier dengan cinta dan integritas bahan murni.
+                    </p>
+                </div>
+
+                <div class="md:col-span-3 space-y-3">
+                    <h4 class="text-xs font-bold text-lunea-900 uppercase tracking-widest">Navigasi</h4>
+                    <ul class="space-y-2 text-xs sm:text-sm text-lunea-800 font-medium">
+                        <li><button onclick="switchPage('home')" class="hover:text-lunea-600 transition-colors">Home</button></li>
+                        <li><button onclick="switchPage('about')" class="hover:text-lunea-600 transition-colors">Tentang Kami</button></li>
+                        <li><button onclick="switchPage('products')" class="hover:text-lunea-600 transition-colors">Katalog Produk</button></li>
+                        <li><button onclick="switchPage('contact')" class="hover:text-lunea-600 transition-colors">Kontak</button></li>
+                    </ul>
+                </div>
+
+                <div class="md:col-span-4 space-y-3">
+                    <h4 class="text-xs font-bold text-lunea-900 uppercase tracking-widest">Jaminan Kualitas</h4>
+                    <p class="text-xs text-lunea-700 leading-relaxed">
+                        Seluruh produk diproduksi di fasilitas bersertifikasi cGMP dengan audit mutu berkala untuk memastikan keamanan tertinggi bagi setiap konsumen.
+                    </p>
+                    <div class="pt-2 flex items-center space-x-2 text-xs font-semibold text-lunea-700">
+                        <span class="bg-white/80 px-2.5 py-1 rounded-md border border-rose-200">BPOM RI</span>
+                        <span class="bg-white/80 px-2.5 py-1 rounded-md border border-rose-200">100% Halal</span>
+                        <span class="bg-white/80 px-2.5 py-1 rounded-md border border-rose-200">Dermatologist Tested</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="pt-8 text-center sm:flex sm:justify-between sm:items-center text-xs text-lunea-700 space-y-2 sm:space-y-0">
+                <span>&copy; 2026 Lunea Skin. Seluruh Hak Cipta Dilindungi.</span>
+                <span class="text-lunea-600 font-medium">Dirancang lembut & bersahabat untuk kenyamanan mata Anda.</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notification (Glassmorphic) -->
+    <div id="toast-notification" class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 transition-all duration-300 max-w-sm w-full bg-white/95 backdrop-blur-xl border border-rose-200 text-lunea-900 px-5 py-4 rounded-2xl shadow-[0_15px_35px_-5px_rgba(140,57,71,0.2)] flex items-center justify-between">
+        <div class="flex items-center space-x-3">
+            <div class="w-8 h-8 rounded-full bg-gradient-to-br from-lunea-600 to-rose-600 text-white flex items-center justify-center shrink-0 shadow-sm">
+                <i class="fa-solid fa-check text-xs"></i>
+            </div>
+            <span id="toast-message" class="text-xs sm:text-sm font-semibold text-lunea-900">Produk berhasil ditambahkan!</span>
+        </div>
+        <button onclick="hideToast()" class="text-lunea-400 hover:text-lunea-800 ml-4">
+            <i class="fa-solid fa-xmark text-sm"></i>
+        </button>
+    </div>
+
+    <!-- FIX Bug #9: modals use .modal-overlay class. JS adds/removes .open which
+         sets display:flex — avoids the hidden+flex conflict that breaks in Firefox. -->
+    <div id="search-modal" class="modal-overlay items-start justify-center pt-20 px-4">
+        <div class="glass-card bg-white/97 rounded-3xl max-w-xl w-full p-6 shadow-[0_20px_60px_-10px_rgba(140,57,71,0.22)] border border-rose-200 space-y-4">
+            <div class="flex items-center justify-between border-b border-rose-100 pb-3">
+                <div class="flex items-center space-x-2">
+                    <i class="fa-solid fa-magnifying-glass text-lunea-600"></i>
+                    <h3 class="font-serif font-bold text-lg text-lunea-900">Cari Produk Lunea Skin</h3>
+                </div>
+                <button onclick="toggleSearchModal()" class="w-8 h-8 rounded-full hover:bg-rose-100 text-lunea-500 hover:text-lunea-900 flex items-center justify-center transition-colors">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div class="relative">
+                <input type="text" id="modal-search-input" oninput="handleModalSearch(this.value)" placeholder="Ketik nama produk (Serum, Sunscreen, Toner)..." class="w-full bg-white border border-rose-200 rounded-xl px-4 py-3 text-sm text-lunea-900 focus:outline-none focus:ring-2 focus:ring-lunea-400 pl-10 shadow-xs">
+                <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3.5 text-lunea-400"></i>
+            </div>
+            <div id="modal-search-results" class="max-h-64 overflow-y-auto space-y-2 pt-2 pr-1">
+                <!-- Search results injected here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Drawer Modal -->
+    <div id="cart-drawer" class="modal-overlay justify-end">
+        <div class="bg-white/95 backdrop-blur-xl w-full max-w-md h-full shadow-2xl flex flex-col justify-between p-6 border-l border-rose-200">
+            <div class="space-y-4">
+                <div class="flex items-center justify-between border-b border-rose-100 pb-4">
+                    <div class="flex items-center space-x-2.5">
+                        <div class="w-8 h-8 rounded-full bg-rose-100 text-lunea-700 flex items-center justify-center text-xs">
+                            <i class="fa-solid fa-bag-shopping"></i>
+                        </div>
+                        <h3 class="font-serif font-bold text-xl text-lunea-900">Keranjang Belanja (<span id="cart-count-header">0</span>)</h3>
+                    </div>
+                    <button onclick="toggleCartDrawer()" class="w-8 h-8 rounded-full hover:bg-rose-100 text-lunea-500 hover:text-lunea-900 flex items-center justify-center">
+                        <i class="fa-solid fa-xmark text-lg"></i>
+                    </button>
+                </div>
+                <div id="cart-items-container" class="max-h-[60vh] overflow-y-auto space-y-3 pr-1">
+                    <!-- Cart items inserted here -->
+                </div>
+            </div>
+            <div class="border-t border-rose-200 pt-4 space-y-4">
+                <div class="flex justify-between items-center font-bold text-lunea-900 text-lg">
+                    <span>Subtotal:</span>
+                    <span id="cart-total-price" class="font-serif text-xl text-lunea-800">Rp 0</span>
+                </div>
+                <button onclick="checkoutCart()" class="btn-luxury w-full font-semibold py-3.5 rounded-xl shadow-md transition-all text-sm">
+                    Lanjutkan ke Checkout
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Complete JavaScript Logic -->
+    <script>
+        // Database Produk Lunea Skin - Terhubung presisi ke folder assets/img/
+        const productsData = [
+            { 
+                id: 1, 
+                name: 'Facial Wash', 
+                category: 'Cleanser', 
+                price: 89000, 
+                formattedPrice: 'Rp 89.000', 
+                oldPrice: 'Rp 110.000',
+                size: '100 ml', 
+                desc: 'Pembersih wajah berbusa lembut dengan pH 5.5 seimbang yang membersihkan debu, sebum, dan residu polusi tanpa mengikis lapisan pelindung kulit alami.', 
+                image: 'Gambar/Facial Wash.png',
+                rating: 4.9,
+                reviews: 142
+            },
+            { 
+                id: 2, 
+                name: 'Toner', 
+                category: 'Toner', 
+                price: 129000, 
+                formattedPrice: 'Rp 129.000', 
+                oldPrice: 'Rp 150.000',
+                size: '120 ml', 
+                desc: 'Toner penyegar botani yang menenangkan kemerahan, menyeimbangkan hidrasi, dan mempersiapkan kulit menyerap serum hingga ke lapisan terdalam.', 
+                image: 'Gambar/toner.png',
+                rating: 4.8,
+                reviews: 98
+            },
+            { 
+                id: 3, 
+                name: 'Lunea Skin Brightening Serum', 
+                category: 'Serum', 
+                price: 189000, 
+                formattedPrice: 'Rp 189.000', 
+                oldPrice: 'Rp 220.000',
+                size: '30 ml', 
+                desc: 'Serum konsentrat Niacinamide 5% dan ekstrak Camellia yang terbukti klinis mencerahkan bintik hitam, meratakan rona kulit, dan mengembalikan kilau cerah alami.', 
+                image: 'Gambar/Serum.png',
+                rating: 5.0,
+                reviews: 215
+            },
+            { 
+                id: 4, 
+                name: 'Moisturizer', 
+                category: 'Moisturizer', 
+                price: 149000, 
+                formattedPrice: 'Rp 149.000', 
+                oldPrice: 'Rp 175.000',
+                size: '50 gr', 
+                desc: 'Pelembap bertekstur gel-krim lembut seringan embun yang mengunci kelembapan 24 jam serta memperkuat skin barrier dari faktor cuaca tropis.', 
+                image: 'Gambar/Moisturaizer.jpeg',
+                rating: 4.9,
+                reviews: 176
+            },
+            { 
+                id: 5, 
+                name: 'Sunscreen', 
+                category: 'Sunscreen', 
+                price: 114000, 
+                formattedPrice: 'Rp 114.000', 
+                oldPrice: 'Rp 135.000',
+                size: '40 ml', 
+                desc: 'Tabir surya harian SPF 30 PA+++ dengan formula ultra-ringan tanpa white cast, melindungi kulit dari paparan sinar UV UVA & UVB serta polusi kota.', 
+                image: 'Gambar/Sunscreen.jpeg',
+                rating: 4.8,
+                reviews: 130
+            },
+            { 
+                id: 6, 
+                name: 'Night Cream', 
+                category: 'Moisturizer', 
+                price: 159000, 
+                formattedPrice: 'Rp 159.000', 
+                oldPrice: 'Rp 185.000',
+                size: '50 gr', 
+                desc: 'Krim nutrisi intensif untuk malam hari yang mengoptimalkan regenerasi sel kulit saat tidur, menjadikan wajah kenyal, segar, dan berseri saat bangun pagi.', 
+                image: 'Gambar/Night Cream.jpeg',
+                rating: 4.9,
+                reviews: 164
+            }
+        ];
+
+        let cart = [];
+        let currentFilter = 'all';
+        let currentSearchQuery = '';
+        let currentDetailProduct = null;
+
+        // Inisialisasi
+        window.addEventListener('DOMContentLoaded', () => {
+            renderHomeProducts();
+            renderAllProducts();
+            updateCartBadge();
+            setActiveNav('home');
+        });
+
+        // Router SPA Switch Page
+        function switchPage(pageId) {
+            const pages = document.querySelectorAll('.page-view');
+            pages.forEach(p => p.classList.add('hidden'));
+
+            const targetPage = document.getElementById(`page-${pageId}`);
+            if (targetPage) {
+                targetPage.classList.remove('hidden');
+                setActiveNav(pageId);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        // Active State di Navbar
+        function setActiveNav(pageId) {
+            const navButtons = document.querySelectorAll('.nav-item');
+            navButtons.forEach(btn => {
+                btn.className = "nav-item px-5 py-2 rounded-full text-xs font-medium tracking-wide transition-all duration-200 hover:text-lunea-700 hover:bg-white/70";
+            });
+
+            const activeBtn = document.getElementById(`nav-btn-${pageId}`);
+            if (activeBtn) {
+                activeBtn.className = "nav-item px-5 py-2 rounded-full text-xs font-semibold tracking-wide transition-all duration-200 bg-white text-lunea-700 shadow-xs border border-rose-200/60";
+            }
+        }
+
+        // Render Produk di Beranda
+        function renderHomeProducts() {
+            const grid = document.getElementById('home-products-grid');
+            if (!grid) return;
+
+            // Tampilkan 3 produk unggulan
+            const featured = productsData.slice(0, 3);
+            grid.innerHTML = featured.map(prod => createProductCardHTML(prod)).join('');
+        }
+
+        // Render Katalog Produk
+        function renderAllProducts() {
+            const grid = document.getElementById('all-products-grid');
+            if (!grid) return;
+
+            let filtered = productsData.filter(item => {
+                const matchCategory = currentFilter === 'all' || item.category === currentFilter;
+                const matchSearch = item.name.toLowerCase().includes(currentSearchQuery.toLowerCase());
+                return matchCategory && matchSearch;
+            });
+
+            if (filtered.length === 0) {
+                grid.innerHTML = `
+                    <div class="col-span-full glass-card text-center py-16 px-4 rounded-3xl">
+                        <div class="w-16 h-16 rounded-full bg-rose-100 text-lunea-600 flex items-center justify-center text-2xl mx-auto mb-4">
+                            <i class="fa-solid fa-leaf"></i>
+                        </div>
+                        <h4 class="text-lunea-900 font-bold text-lg">Produk Tidak Ditemukan</h4>
+                        <p class="text-xs text-lunea-600 mt-1 max-w-sm mx-auto">Silakan coba kata kunci lain atau klik kategori "Semua Produk" untuk melihat seluruh koleksi kami.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            grid.innerHTML = filtered.map(prod => createProductCardHTML(prod)).join('');
+        }
+
+        // Template Kartu Produk dengan Kedalaman Visual (Non-Flat)
+        function createProductCardHTML(prod) {
+            return `
+                <div class="glass-card rounded-3xl p-5 flex flex-col group relative overflow-hidden">
+                    <div>
+                        <!-- Product Pod Pedestal -->
+                        <div class="product-pod rounded-2xl mb-5 aspect-square flex items-center justify-center p-4 cursor-pointer relative overflow-hidden" onclick="openProductDetail(${prod.id})">
+                            
+                           
+                            
+                            
+
+                            <img src="${prod.image}" alt="${prod.name}" class="w-full h-full object-cover object-center rounded-xl transform group-hover:scale-105 transition-transform duration-500 relative z-10 drop-shadow-[0_10px_16px_rgba(140,57,71,0.12)]">
+                        </div>
+
+                        <h3 onclick="openProductDetail(${prod.id})" class="font-serif font-bold text-lg text-lunea-900 cursor-pointer hover:text-lunea-700 transition-colors">${prod.name}</h3>
+                        
+                        <div class="flex items-baseline space-x-2.5 mt-1.5">
+                            <span class="text-lunea-900 font-serif font-bold text-lg">${prod.formattedPrice}</span>
+                        </div>
+                        <div class="flex items-center space-x-2 text-xs mt-2 text-gold-500" aria-label="Rating ${prod.rating} dari 5, ${prod.reviews} ulasan">
+                            <i class="fa-solid fa-star text-[11px]" aria-hidden="true"></i>
+                            <span class="text-lunea-800 font-bold">${prod.rating}</span>
+                            <span class="text-lunea-400">(${prod.reviews})</span>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 pt-4 border-t border-rose-100 flex items-center space-x-2">
+                        <button onclick="addToCart(${prod.id})" class="btn-luxury flex-grow py-2.5 px-4 rounded-xl text-xs font-semibold flex items-center justify-center space-x-2">
+                            <i class="fa-solid fa-bag-shopping text-xs"></i>
+                            <span>Beli Sekarang</span>
+                        </button>
+                        <button onclick="openProductDetail(${prod.id})" class="w-9 h-9 rounded-xl border border-rose-200 bg-white/90 text-lunea-700 hover:bg-rose-50 flex items-center justify-center text-xs shadow-xs transition-colors" title="Lihat Rincian">
+                            <i class="fa-solid fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Filter Kategori
+        function filterProducts(category) {
+            currentFilter = category;
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                if (btn.dataset.category === category) {
+                    btn.className = "filter-btn px-4 py-2 rounded-full text-xs font-semibold bg-lunea-700 text-white shadow-xs transition-all whitespace-nowrap";
+                } else {
+                    btn.className = "filter-btn px-4 py-2 rounded-full text-xs font-medium bg-white text-lunea-800 border border-rose-200 hover:bg-rose-50 transition-all whitespace-nowrap";
+                }
+            });
+            renderAllProducts();
+        }
+
+        // Live Search Input Handler
+        function handleSearchInput(query) {
+            currentSearchQuery = query;
+            renderAllProducts();
+        }
+
+        // Buka Halaman Detail Produk
+        function openProductDetail(id) {
+            const product = productsData.find(p => p.id === id);
+            if (!product) return;
+            currentDetailProduct = product;
+
+            document.getElementById('detail-title').innerText = product.name;
+            document.getElementById('detail-price').innerText = product.formattedPrice;
+            document.getElementById('detail-old-price').innerText = product.oldPrice || '';
+            document.getElementById('detail-desc').innerText = product.desc;
+            document.getElementById('detail-size').innerText = product.size;
+            document.getElementById('detail-category-badge').innerText = product.category;
+
+            const mainImg = document.getElementById('detail-main-img');
+            mainImg.src = product.image;
+
+            document.getElementById('thumb-img-1').src = product.image;
+            document.getElementById('thumb-img-2').src = 'assets/img/Skincare Lunea.png';
+            document.getElementById('thumb-img-3').src = 'assets/img/LUNEA SKIN.png';
+
+            selectDetailThumb(1);
+            switchPage('detail');
+        }
+
+        // Thumbnail Switcher
+        function selectDetailThumb(index) {
+            for (let i = 1; i <= 3; i++) {
+                const wrap = document.getElementById(`thumb-wrap-${i}`);
+                if (wrap) {
+                    if (i === index) {
+                        wrap.className = "h-24 rounded-2xl overflow-hidden border-2 border-lunea-600 cursor-pointer bg-white/90 p-2 shadow-xs flex items-center justify-center transition-all";
+                    } else {
+                        wrap.className = "h-24 rounded-2xl overflow-hidden border border-rose-200 cursor-pointer bg-white/90 p-2 hover:border-rose-400 shadow-xs flex items-center justify-center transition-all";
+                    }
+                }
+            }
+
+            const mainImg = document.getElementById('detail-main-img');
+            if (mainImg) {
+                if (index === 1 && currentDetailProduct) {
+                    mainImg.src = currentDetailProduct.image;
+                } else if (index === 2) {
+                    mainImg.src = 'assets/img/Skincare Lunea.png';
+                } else if (index === 3) {
+                    mainImg.src = 'assets/img/LUNEA SKIN.png';
+                }
+            }
+        }
+
+        // Tambah ke Keranjang
+        function addToCart(id) {
+            const product = productsData.find(p => p.id === id);
+            if (!product) return;
+
+            const existing = cart.find(item => item.id === id);
+            if (existing) {
+                existing.qty += 1;
+            } else {
+                cart.push({ ...product, qty: 1 });
+            }
+
+            updateCartBadge();
+            renderCartItems();
+            showToast(`"${product.name}" ditambahkan ke keranjang belanja!`);
+        }
+
+        function buyNowFromDetail() {
+            if (currentDetailProduct) {
+                addToCart(currentDetailProduct.id);
+            } else {
+                addToCart(3);
+            }
+            toggleCartDrawer();
+        }
+
+        // Toast Notification System
+        function showToast(message) {
+            const toast = document.getElementById('toast-notification');
+            const msgEl = document.getElementById('toast-message');
+            msgEl.innerText = message;
+            toast.classList.remove('translate-y-24', 'opacity-0');
+            setTimeout(() => {
+                hideToast();
+            }, 3500);
+        }
+
+        function hideToast() {
+            const toast = document.getElementById('toast-notification');
+            toast.classList.add('translate-y-24', 'opacity-0');
+        }
+
+        // Cart Badge & Counter
+        function updateCartBadge() {
+            const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
+            document.getElementById('cart-badge').innerText = totalQty;
+            document.getElementById('cart-count-header').innerText = totalQty;
+        }
+
+        // Render Isi Keranjang
+        function renderCartItems() {
+            const container = document.getElementById('cart-items-container');
+            const totalPriceEl = document.getElementById('cart-total-price');
+
+            if (cart.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-14 px-4">
+                        <div class="w-14 h-14 rounded-full bg-rose-50 text-rose-300 flex items-center justify-center text-xl mx-auto mb-3">
+                            <i class="fa-solid fa-bag-shopping"></i>
+                        </div>
+                        <p class="text-lunea-900 font-bold text-sm">Keranjang Anda Masih Kosong</p>
+                        <p class="text-xs text-lunea-500 mt-1">Pilih produk botani favorit Anda untuk memulai belanja.</p>
+                    </div>
+                `;
+                totalPriceEl.innerText = 'Rp 0';
+                return;
+            }
+
+            let totalPrice = 0;
+            container.innerHTML = cart.map(item => {
+                totalPrice += item.price * item.qty;
+                return `
+                    <div class="flex items-center justify-between bg-white p-3.5 rounded-2xl border border-rose-100 shadow-xs text-sm">
+                        <div class="flex items-center space-x-3">
+                            <img src="${item.image}" alt="${item.name}" class="w-12 h-12 object-contain bg-rose-50/50 rounded-xl border border-rose-100 p-1">
+                            <div>
+                                <h4 class="font-bold text-lunea-900 text-xs sm:text-sm">${item.name}</h4>
+                                <p class="text-[11px] text-lunea-600 font-medium">${item.formattedPrice} × ${item.qty}</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-1.5">
+                            <button onclick="decreaseQty(${item.id})" class="w-7 h-7 rounded-lg bg-rose-50 border border-rose-200 text-lunea-800 flex items-center justify-center text-xs hover:bg-rose-100 transition-colors">-</button>
+                            <span class="text-xs font-bold text-lunea-900 w-5 text-center">${item.qty}</span>
+                            <button onclick="increaseQty(${item.id})" class="w-7 h-7 rounded-lg bg-rose-50 border border-rose-200 text-lunea-800 flex items-center justify-center text-xs hover:bg-rose-100 transition-colors">+</button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            totalPriceEl.innerText = 'Rp ' + totalPrice.toLocaleString('id-ID');
+        }
+
+        function increaseQty(id) {
+            const item = cart.find(i => i.id === id);
+            if (item) {
+                item.qty += 1;
+                updateCartBadge();
+                renderCartItems();
+            }
+        }
+
+        function decreaseQty(id) {
+            const item = cart.find(i => i.id === id);
+            if (item) {
+                item.qty -= 1;
+                if (item.qty <= 0) {
+                    cart = cart.filter(i => i.id !== id);
+                }
+                updateCartBadge();
+                renderCartItems();
+            }
+        }
+
+        function checkoutCart() {
+            if (cart.length === 0) {
+                showToast('Keranjang masih kosong!');
+                return;
+            }
+            showToast('Pesanan Anda sedang diproses! Terima kasih telah merawat diri bersama Lunea Skin.');
+            cart = [];
+            updateCartBadge();
+            renderCartItems();
+            toggleCartDrawer();
+        }
+
+        // Toggles & Modal Handlers
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        function toggleSearchModal() {
+            const modal = document.getElementById('search-modal');
+            modal.classList.toggle('open');
+            if (modal.classList.contains('open')) {
+                setTimeout(() => document.getElementById('modal-search-input').focus(), 50);
+            }
+        }
+
+        function handleModalSearch(query) {
+            const resultsContainer = document.getElementById('modal-search-results');
+            if (!query.trim()) {
+                resultsContainer.innerHTML = '';
+                return;
+            }
+            const filtered = productsData.filter(p => p.name.toLowerCase().includes(query.toLowerCase()));
+            if (filtered.length === 0) {
+                resultsContainer.innerHTML = `<p class="text-xs text-lunea-600 p-3 text-center">Produk tidak ditemukan.</p>`;
+                return;
+            }
+            resultsContainer.innerHTML = filtered.map(p => `
+                <div onclick="openProductDetail(${p.id}); toggleSearchModal();" class="p-3 bg-white hover:bg-rose-50/70 rounded-xl cursor-pointer flex justify-between items-center text-sm border border-rose-100 transition-colors">
+                    <div class="flex items-center space-x-3">
+                        <img src="${p.image}" alt="${p.name}" class="w-9 h-9 object-contain bg-rose-50 rounded-lg border border-rose-100 p-0.5">
+                        <span class="font-semibold text-lunea-900">${p.name}</span>
+                    </div>
+                    <span class="text-xs text-lunea-800 font-bold">${p.formattedPrice}</span>
+                </div>
+            `).join('');
+        }
+
+        function toggleCartDrawer() {
+            const drawer = document.getElementById('cart-drawer');
+            drawer.classList.toggle('open');
+            renderCartItems();
+        }
+
+        function toggleWishlist(btn) {
+            const icon = btn.querySelector('i');
+            if (icon.classList.contains('fa-regular')) {
+                icon.classList.remove('fa-regular');
+                icon.classList.add('fa-solid', 'text-rose-600');
+                showToast('Produk berhasil ditambahkan ke Wishlist!');
+            } else {
+                icon.classList.remove('fa-solid', 'text-rose-600');
+                icon.classList.add('fa-regular');
+                showToast('Produk dihapus dari Wishlist.');
+            }
+        }
+
+        function toggleCardWishlist(e, btn) {
+            e.stopPropagation();
+            toggleWishlist(btn);
+        }
+
+        function handleContactSubmit(e) {
+            e.preventDefault();
+            showToast('Pesan terkirim! Tim konsultan Lunea Skin akan segera menghubungi Anda.');
+            e.target.reset();
+        }
+
+        // Interactive Skincare Ritual Switcher
+        let ritualSwitchTimeout;
+        function switchRitual(type) {
+            const morningBox = document.getElementById('ritual-morning');
+            const nightBox = document.getElementById('ritual-night');
+            const morningBtn = document.getElementById('ritual-btn-morning');
+            const nightBtn = document.getElementById('ritual-btn-night');
+            const transitionDuration = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 200;
+
+            clearTimeout(ritualSwitchTimeout);
+            morningBox.classList.remove('ritual-fade');
+            nightBox.classList.remove('ritual-fade');
+
+            const currentBox = morningBox.classList.contains('hidden') ? nightBox : morningBox;
+            const targetBox = type === 'morning' ? morningBox : nightBox;
+
+            if (type === 'morning') {
+                morningBtn.className = "px-6 py-2 rounded-full text-xs font-bold transition-all duration-200 bg-white text-lunea-800 shadow-xs";
+                nightBtn.className = "px-6 py-2 rounded-full text-xs font-semibold text-lunea-600 hover:text-lunea-900 transition-all duration-200";
+            } else {
+                nightBtn.className = "px-6 py-2 rounded-full text-xs font-bold transition-all duration-200 bg-white text-lunea-800 shadow-xs";
+                morningBtn.className = "px-6 py-2 rounded-full text-xs font-semibold text-lunea-600 hover:text-lunea-900 transition-all duration-200";
+            }
+
+            if (currentBox === targetBox) return;
+
+            currentBox.classList.add('ritual-fade');
+            ritualSwitchTimeout = setTimeout(() => {
+                currentBox.classList.add('hidden');
+                targetBox.classList.remove('hidden');
+                targetBox.classList.add('ritual-fade');
+                requestAnimationFrame(() => targetBox.classList.remove('ritual-fade'));
+            }, transitionDuration);
+        }
+
+        // Smooth FAQ Accordion
+        function toggleFaq(index) {
+            const answer = document.getElementById(`faq-answer-${index}`);
+            const icon = document.getElementById(`faq-icon-${index}`);
+            if (!answer) return;
+
+            const isOpen = answer.classList.contains('open');
+            // Close all
+            for (let i = 1; i <= 3; i++) {
+                const a = document.getElementById(`faq-answer-${i}`);
+                const ic = document.getElementById(`faq-icon-${i}`);
+                if (a) a.classList.remove('open');
+                if (ic) ic.style.transform = 'rotate(0deg)';
+            }
+
+            if (!isOpen) {
+                answer.classList.add('open');
+                icon.style.transform = 'rotate(180deg)';
+            }
+        }
+    </script>
+</body>
+</html>
